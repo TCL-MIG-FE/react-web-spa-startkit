@@ -49,7 +49,7 @@ npm run build           # 打包到static目录
 * 打包后会把三方依赖合并为vendors_{date}.js，需要调整请修改webpack.config.js中的entry -> vendors，并同时修改vendor日期。由于vendor一般不会发生变化，发生变化后请修改。
 * layouts中的css/less非模块化，使用时直接写样式名，container/components中的按模块方式使用
 * 图标样式，glyphicon是bootstrap的图标；icon是[iconfont](http://www.iconfont.cn/)图标
-* Linux系统下运行`npm run build`会报错，请执行`npm run build_unix"
+* Linux系统下运行`npm run build`会报错，请执行`npm run build_unix`
 * mock-server端口默认2618，webpack-dev-server默认端口3000，可以在package.json里修改
 
 [1]: https://www.npmjs.com/package/lodash
