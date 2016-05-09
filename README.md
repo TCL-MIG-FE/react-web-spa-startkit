@@ -6,16 +6,16 @@
 * redux redux-form redux-actions redux-async redux-thunk 
 
 ## 构建项目 
-    # 开发环境（未安装mtt）
-    ---------
-    git clone https://github.com/TCL-MIG-FE/react-web-spa-startkit.git
-    cd react-web-spa-startkit && npm install                  
-    
-    # 开发和打包
-    ---------
-    npm run mock            # 开启模拟服务器
-    npm run start           # 开发环境自动编译
-    npm run build           # 打包到static目录
+
+```bash
+git clone https://github.com/TCL-MIG-FE/react-web-spa-startkit.git
+cd react-web-spa-startkit && npm install
+```                 
+```bash
+npm run mock            # 开启模拟服务器
+npm run start           # 开发环境自动编译
+npm run build           # 打包到static目录
+```
     
 ## 目录结构   
     ├─mock-server         # 模拟服务器 
