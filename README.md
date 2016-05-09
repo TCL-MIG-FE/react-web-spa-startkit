@@ -10,7 +10,8 @@
 ```bash
 git clone https://github.com/TCL-MIG-FE/react-web-spa-startkit.git
 cd react-web-spa-startkit && npm install
-```                 
+```  
+               
 ```bash
 npm run mock            # 开启模拟服务器
 npm run start           # 开发环境自动编译
@@ -20,7 +21,7 @@ npm run build           # 打包到static目录
 ## 目录结构   
     ├─mock-server         # 模拟服务器 
     │  └─api.json         # 模拟数据
-    └─resources                 # 源码目录  
+    └─resources           # 源码目录  
        ├─actions          # actions
        ├─components       # react组件
        │  ├─BarCharts 
@@ -41,7 +42,7 @@ npm run build           # 打包到static目录
        ├─store            # 唯一的store
        ├─utils            # 工具方法
        ├─index.html       # 入口html模板,webpack会把编译后的脚本和样式注入进去
-       ├─app.js         # 入口js
+       ├─app.js           # 入口js
        └─routes.js        # 路由
 
 ## 说明
