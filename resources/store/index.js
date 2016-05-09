@@ -25,8 +25,7 @@ export default (initialState) => {
 
   const store = createStoreWithMiddleware(rootReducer, initialState);
 
-  if(module.hot) {
-    console.log('hot');
+  if(__DEV__) {
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers')
       store.replaceReducer(nextReducer)
