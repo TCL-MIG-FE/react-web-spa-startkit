@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --inline --hot --port 3000 --devtool source-maps --progress --colors --content-base .",
     "build": "set NODE_ENV=production&&webpack --progress --colors",
+    "build_unix": "export NODE_ENV=production&&webpack --progress --colors",
     "mock": "node ./mock-server/server.js 2618"
   },
   "license": "MIT",
