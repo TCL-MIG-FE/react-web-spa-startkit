@@ -1,9 +1,9 @@
 # 基于React+Redux的开发工程模板
 
 ## 项目依赖 
-* lodash[1] classnames[2] querystring[3] echarts[4]
-* react[5] react-redux[6] react-router[7] react-router-redux[8] react-dom[9] react-bootstrap[10] 
-* redux[11] redux-form[12] redux-actions[13] redux-async[14] redux-thunk[15] 
+* [lodash][1] [classnames][2] [querystring][3] [echarts][4]
+* [react][5] [react-redux][6] [react-router][7] [react-router-redux][8] [react-dom][9] [react-bootstrap][10] 
+* [redux][11] [redux-form][12] [redux-actions][13] [redux-async][14] [redux-thunk][15] 
 
 ## 构建项目 
 
