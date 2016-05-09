@@ -1,0 +1,60 @@
+{
+  "Demo": [
+    {
+      "url": "/address",
+      "desc": "获取一些IP地址",
+      "mock":true,
+      "res": {
+        "code": 200,
+        "msg": "Get address successfully.",
+        "data|0-10": ["@ip()"]
+      }
+    },
+    {
+      "url": "/config",
+      "desc": "保存配置",
+      "mock":true,
+      "delay": 1000,
+      "res": {
+        "code": "@pick([200, 500])",
+        "msg": "There is a 50% chance of failure, pls try again",
+        "data": ["Save config successfully"]
+      }
+    },
+    {
+      "url": "/chartData",
+      "desc": "获取表格数据",
+      "mock":true,
+      "res": {
+        "code": 200,
+        "msg": "Get data success",
+        "data": {
+          "xAxis": {
+            "data|20": ["@city()"]
+          },
+          "yAxis": {},
+          "series": [
+            {
+              "name": "销量1",
+              "data|20": ["@integer(1, 100)"]
+            },
+            {
+              "name": "销量2",
+              "data|20": ["@integer(1, 100)"]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "/",
+      "desc": "Index",
+      "mock":true,
+      "res": {
+        "code": 200,
+        "msg": "Hi, this is mock server.",
+        "data": ""
+      }
+    }
+  ]
+}

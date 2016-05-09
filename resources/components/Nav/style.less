@@ -1,0 +1,24 @@
+@navColor: #00ccff;
+
+.nav {
+  padding: 0;
+  list-style: none;
+  li {
+    > a {
+      color: @navColor;
+      display: block;
+      transition: all 0.1s;
+      padding: 20px;
+      &:hover {
+        transform: scale(1.15);
+        background-color: transparent !important;
+      }
+      &.active {
+        font-weight: 600;
+      }
+    }
+    > ul {
+      list-style: none;
+    } 
+  }
+}
