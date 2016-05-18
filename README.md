@@ -15,7 +15,7 @@ cd react-web-spa-startkit && npm install
 ```bash
 npm run mock            # 开启模拟服务器
 npm run start           # 开发环境自动编译
-npm run build           # 打包到static目录
+npm run build           # 打包到static目录,同时在上级文件夹中生成index.jsp,支持J2EE应用上下文
 ```
 
 ## 目录结构
