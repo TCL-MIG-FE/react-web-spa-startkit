@@ -2,10 +2,13 @@ var path = require("path"),
     webpack = require("webpack"),
     proxy = require("./proxy");
 
-var SRC_PATH = path.resolve(__dirname, 'resources'),
-    DIST_PATH = path.resolve(__dirname, 'static');
+var SRC_PATH = path.join(__dirname, 'src'),
+    DIST_PATH = path.join(__dirname, '../static'),
+    FILE_HASH_TAG = '_[hash:5]',
+    CHUNK_FILE_HASH_TAG = '_[chunkhash:5]';
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 var config = {
@@ -41,7 +44,8 @@ var config = {
     output: {
         path: DIST_PATH,
         publicPath: '',
-        filename: "js/[name].js"
+        filename: `js/[name]${FILE_HASH_TAG}.js`,
+        chunkFilename: `js/[name]${CHUNK_FILE_HASH_TAG}.js`
     },
 
     clearBeforeBuild: true,
@@ -49,19 +53,27 @@ var config = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin(
             'vendors',
-            'vendors.v20160519.js', // vendor date
+            'js/vendors_20160510.js', // vendor date
             Infinity
         ),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development'),
-            '__DEV__': true
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            '__DEV__': false
+        }),
+
+        new ExtractTextPlugin(`css/[name]${FILE_HASH_TAG}.css`, { allChunks: true }),
+
+        new webpack.optimize.UglifyJsPlugin({
+            comments: false,
+            warnings: false
         }),
 
         new HtmlWebpackPlugin({
             inject: false,
-            filename: 'index.html',
-            template: path.join(SRC_PATH, 'index.html'),
-            chunks: ['commons', 'vendors', 'app']
+            filename: '../index.jsp',
+            template: path.join(SRC_PATH, 'index.jsp'),
+            chunks: ['commons', 'vendors', 'app'],
+            context:"<%=request.getContextPath()%>/static"
         })
 
     ],
@@ -74,7 +86,7 @@ var config = {
                 loader: "babel",
                 query: {
                     plugins: ['transform-runtime'],
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react','stage-0']
                 },
                 include: SRC_PATH,
                 exclude: /node_modules/
@@ -82,13 +94,17 @@ var config = {
 
             {
                 test: /\.css$/,
-                loader: "style!css!autoprefixer!less",
+                loader: ExtractTextPlugin.extract("style", "css!autoprefixer", {
+                    publicPath: "../"
+                }),
                 exclude: /node_modules/
             },
 
             {
                 test: /\.less$/,
-                loader: "style!css!autoprefixer!less",
+                loader: ExtractTextPlugin.extract("style", "css!autoprefixer!less", {
+                    publicPath: "../"
+                }),
                 exclude: /node_modules/
             },
 
@@ -97,7 +113,7 @@ var config = {
                 loader: "url",
                 query: {
                     limit: 8192,
-                    name: 'imgs/[name].[ext]'
+                    name: `imgs/[name]${FILE_HASH_TAG}.[ext]`
                 }
             },
 
@@ -110,14 +126,10 @@ var config = {
                 }
             }
         ]
-    },
-
-    devServer: {
-       proxy: proxy
     }
 };
 
 
-console.log("initializing webpack developent build....");
+console.log("initializing webpack production build....");
 
 module.exports = config;

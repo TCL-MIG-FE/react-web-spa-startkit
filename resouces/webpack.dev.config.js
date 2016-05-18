@@ -2,13 +2,10 @@ var path = require("path"),
     webpack = require("webpack"),
     proxy = require("./proxy");
 
-var SRC_PATH = path.resolve(__dirname, 'resources'),
-    DIST_PATH = path.resolve(__dirname, 'static'),
-    FILE_HASH_TAG = '_[hash:5]',
-    CHUNK_FILE_HASH_TAG = '_[chunkhash:5]';
+var SRC_PATH = path.join(__dirname, 'src'),
+    DIST_PATH = path.join(__dirname, '../static');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 var config = {
@@ -44,8 +41,7 @@ var config = {
     output: {
         path: DIST_PATH,
         publicPath: '',
-        filename: `js/[name]${FILE_HASH_TAG}.js`,
-        chunkFilename: `js/[name]${CHUNK_FILE_HASH_TAG}.js`
+        filename: "js/[name].js"
     },
 
     clearBeforeBuild: true,
@@ -53,25 +49,18 @@ var config = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin(
             'vendors',
-            'js/vendors_20160519.js', // vendor date
+            'vendors.v20160519.js', // vendor date
             Infinity
         ),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('production'),
-            '__DEV__': false
-        }),
-
-        new ExtractTextPlugin(`css/[name]${FILE_HASH_TAG}.css`, { allChunks: true }),
-
-        new webpack.optimize.UglifyJsPlugin({
-            comments: false,
-            warnings: false
+            'process.env.NODE_ENV': JSON.stringify('development'),
+            '__DEV__': true
         }),
 
         new HtmlWebpackPlugin({
             inject: false,
             filename: 'index.html',
-            template: path.join(SRC_PATH, 'index.html'),
+            template: path.join(SRC_PATH, 'index_dev.jsp'),
             chunks: ['commons', 'vendors', 'app']
         })
 
@@ -85,7 +74,7 @@ var config = {
                 loader: "babel",
                 query: {
                     plugins: ['transform-runtime'],
-                    presets: ['es2015', 'react']
+                    presets: ['es2015', 'react','stage-0']
                 },
                 include: SRC_PATH,
                 exclude: /node_modules/
@@ -93,17 +82,13 @@ var config = {
 
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style", "css!autoprefixer", {
-                    publicPath: "../"
-                }),
-                exclude: /node_modules/,
+                loader: "style!css!autoprefixer!less",
+                exclude: /node_modules/
             },
 
             {
                 test: /\.less$/,
-                loader: ExtractTextPlugin.extract("style", "css!autoprefixer!less", {
-                    publicPath: "../"
-                }),
+                loader: "style!css!autoprefixer!less",
                 exclude: /node_modules/
             },
 
@@ -112,7 +97,7 @@ var config = {
                 loader: "url",
                 query: {
                     limit: 8192,
-                    name: `imgs/[name]${FILE_HASH_TAG}.[ext]`
+                    name: 'imgs/[name].[ext]'
                 }
             },
 
@@ -125,10 +110,14 @@ var config = {
                 }
             }
         ]
+    },
+
+    devServer: {
+       proxy: proxy
     }
 };
 
 
-console.log("initializing webpack production build....");
+console.log("initializing webpack developent build....");
 
 module.exports = config;

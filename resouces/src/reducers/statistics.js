@@ -3,7 +3,7 @@ import { CLICK_TEST, GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE, ADD_R
 import { merge, union } from 'lodash';
 
 const initialState = {
-  text: 'Hello, guys',
+  text: 'Hello, guys1',
   clickCnt: 0,
   a: {b:1, c:2},
   users: []
