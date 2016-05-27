@@ -8,7 +8,7 @@ var mock = require("mockjs");
 var app = require('express')();
 var port = process.argv.slice(2)[0] || 8080;
 var server = app.listen(port, function() {
-  console.info('Mock server is listening at' + port);
+  console.info('Mock server is listening at ' + port);
 });
 
 const prefix = '/api';
@@ -34,16 +34,24 @@ app.use(function(req, res) {
   var delay = 0;
   for(var group in api) {
     if(api[group].find(function(reqData) {
-      if(req.originalUrl.indexOf(prefix + reqData.url) !== 0) {
-        return false;
-      }
-      var apiRes = reqData.res;
-      data = reqData.mock ? mock.mock(apiRes) : apiRes;
-      delay = reqData.delay || 0;
-      return true;
-    }) !== undefined) {
+        if(reqData.regex) {
+          if(!new RegExp(reqData.url).test(req.originalUrl)) {
+            return false;
+          }
+        } else if(req.originalUrl.indexOf(prefix + reqData.url) !== 0) {
+          return false;
+        }
+
+        var apiRes = reqData.res;
+        data = reqData.mock ? mock.mock(apiRes) : apiRes;
+        delay = reqData.delay || 0;
+        return true;
+      }) !== undefined) {
       break;
     }
   }
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   data !== undefined ? setTimeout(() => res.jsonp(data), delay) : res.sendStatus(404);
 });
