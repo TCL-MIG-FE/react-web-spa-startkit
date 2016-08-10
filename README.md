@@ -19,7 +19,7 @@ npm run build           # 打包到static目录,同时在上级文件夹中生�
 
 ## 截图
 
-![截图](screenshot/screenshot.png)
+![截图](https://github.com/TCL-MIG-FE/react-web-spa-startkit/raw/master/screenshot/screenshot.png)
 
 ## 目录结构
     │  package.json              # 配置管理
