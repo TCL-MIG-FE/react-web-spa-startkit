@@ -45,7 +45,7 @@ let ChannelForm = React.createClass({
 		
 		return (
 			
-			<Form horizontal form={form}>
+			<Form horizontal >
 				<FormItem label="APP名称：" {...layouts} >
 					<p className="ant-form-text">{channel.appName}</p>
 				</FormItem>

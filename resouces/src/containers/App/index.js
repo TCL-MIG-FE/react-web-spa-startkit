@@ -15,7 +15,7 @@ var App = React.createClass({
 			<div className="page-wrapper">
 				{root.pageLoading && <PageLoading />}
 				<header className="page-header">
-					<h2>Channel Tracking Analyzer</h2>
+					<h2>REACT SPA STARTKIT</h2>
 					<div className="user">
 						<span>{root.user.email}</span>
 					</div>

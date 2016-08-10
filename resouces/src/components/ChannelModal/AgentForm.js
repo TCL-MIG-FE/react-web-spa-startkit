@@ -20,7 +20,7 @@ let AgentForm = React.createClass({
 		
 		return (
 			<Modal title="新建Agent" visible={visible} onCancel={onCancel} onSave={onSave}>
-				<Form form={form} horizontal>
+				<Form horizontal>
 					<FormItem label="Agent：" {...layouts} required>
 						<Input {...agentNameProps} placeholder="请输入Agent名称"/>
 					</FormItem>
@@ -31,8 +31,16 @@ let AgentForm = React.createClass({
 	}
 });
 
+AgentForm.propTypes = {
+	visible:React.PropTypes.bool.isRequired,
+	onSave: React.PropTypes.func.isRequired,
+	onCancel: React.PropTypes.func.isRequired,
+};
+
 
 AgentForm = Form.create()(AgentForm);
+
+
 
 export default AgentForm;
 

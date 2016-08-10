@@ -20,7 +20,7 @@ let SourceForm = React.createClass({
 
 		return (
 			<Modal title="新建Source" visible={visible} onCancel={onCancel} onSave={onSave}>
-				<Form form={form} horizontal>
+				<Form  horizontal>
 					<FormItem label="Source：" {...layouts} required>
 						<Input {...agentNameProps} placeholder="请输入Sources名称"/>
 					</FormItem>
@@ -30,6 +30,12 @@ let SourceForm = React.createClass({
 		);
 	}
 });
+
+SourceForm.propTypes = {
+	visible:React.PropTypes.bool.isRequired,
+	onSave: React.PropTypes.func.isRequired,
+	onCancel: React.PropTypes.func.isRequired,
+};
 
 
 SourceForm = Form.create()(SourceForm);

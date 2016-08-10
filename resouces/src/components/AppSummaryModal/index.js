@@ -33,7 +33,7 @@ let SummaryForm = React.createClass({
 		
 		return (
 			
-			<Form horizontal form={form}>
+			<Form horizontal>
 				<FormItem label="APP名称：" {...layouts} >
 					<Input placeholder="请输入APP名称"  {...nameProps} />
 				</FormItem>
