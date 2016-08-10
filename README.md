@@ -17,6 +17,10 @@ npm run start           # 开发环境自动编译并开启mock服务
 npm run build           # 打包到static目录,同时在上级文件夹中生成index.jsp,支持J2EE应用上下文
 ```
 
+## 截图
+
+![截图](screenshot/screenshot.png)
+
 ## 目录结构
     │  package.json              # 配置管理
     │  proxy.js                  # 代理配置
