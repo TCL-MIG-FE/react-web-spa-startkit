@@ -1,0 +1,64 @@
+@bgColor: #0097e0;
+
+.page-wrapper {
+
+  height: 100%;
+
+  header {
+    min-width: 1280px;
+    height: 64px;
+    position: relative;
+    padding-left: 30px;
+    background-color: @bgColor;
+
+    .logo {
+      width: 200px;
+      height: 100%;
+      background: transparent url("../../layouts/img/logo-hawk-eye.png") center center no-repeat;
+      background-size: 70%;
+      display: inline-block;
+    }
+
+    h2 {
+      position: absolute;
+      left: 30px;
+      top: 19px;
+      color: #fff;
+    }
+
+    .user {
+      position: absolute;
+      height: 100%;
+      background: transparent url("../../layouts/img/avatar.png") left center no-repeat;
+      top: 0;
+      right: 90px;
+      padding-left: 40px;
+      span {
+        text-align: center;
+        color: #fff;
+        line-height: 64px;
+      }
+    }
+
+    .logout {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 16px;
+      color: #BDDDFF;
+      width: 72px;
+      height: 64px;
+      padding-top: 20px;
+      padding-right: 20px;
+      padding-left: 20px;
+      background-color: #0489ca;
+      text-align: center;
+
+      &:hover {
+        color: #fff;
+        background-color: #028fd5;
+      }
+    }
+  }
+
+}

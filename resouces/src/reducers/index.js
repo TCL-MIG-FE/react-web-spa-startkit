@@ -1,16 +1,12 @@
-import { routeReducer } from 'react-router-redux';
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
-
-import dashboard from './dashboard';
-import statistics from './statistics';
-import config from './config';
+import {routeReducer} from "react-router-redux";
+import {combineReducers} from "redux";
+import apps from "./apps";
+import channels from "./channels";
+import root from "./root";
 
 export default combineReducers({
-  routeReducer, // react router
-  form: formReducer, // redux form
-  // custom reducers
-  dashboard,
-  statistics,
-  config
+	routeReducer, // react router
+	apps,
+	channels,
+	root,
 })

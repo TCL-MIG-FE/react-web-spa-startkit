@@ -1,13 +1,11 @@
-import { createAction } from 'redux-actions';
-import { GET_CHART_DATA_REQUEST, GET_CHART_DATA_SUCCESS, GET_CHART_DATA_FAILURE } from '../constants/actions';
-import API from '../utils/api';
+import {GET_APPS,GET_APPS_SUMMARY} from "../constants/api";
+import {createAction} from "redux-actions";
+import Api from "../utils/api";
 
 export default {
-  getChartData: (params) => ({
-    types: [GET_CHART_DATA_REQUEST, GET_CHART_DATA_SUCCESS, GET_CHART_DATA_FAILURE],
-    payload: {
-      result: API.getChartData(params)
-    }
-  })
-};
+	getApps: createAction(GET_APPS, Api.getApps),
 
+	getAppsSummary: createAction(GET_APPS_SUMMARY, Api.getAppsSummary),
+
+
+};

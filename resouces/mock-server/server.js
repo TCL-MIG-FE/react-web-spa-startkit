@@ -1,7 +1,4 @@
-/**
- * Created by chenzhengguo on 2015/7/30.
- * Updated by chenzhengguo on 2016/1/28.
- */
+
 var path = require('path');
 var fs = require('fs');
 var mock = require("mockjs");
@@ -34,19 +31,19 @@ app.use(function(req, res) {
   var delay = 0;
   for(var group in api) {
     if(api[group].find(function(reqData) {
-        if(reqData.regex) {
-          if(!new RegExp(reqData.url).test(req.originalUrl)) {
+          if(reqData.regexp) {
+            if(!new RegExp(reqData.url).test(req.originalUrl)) {
+              return false;
+            }
+          } else if(req.originalUrl.indexOf(prefix + reqData.url) !== 0) {
             return false;
           }
-        } else if(req.originalUrl.indexOf(prefix + reqData.url) !== 0) {
-          return false;
-        }
-
-        var apiRes = reqData.res;
-        data = reqData.mock ? mock.mock(apiRes) : apiRes;
-        delay = reqData.delay || 0;
-        return true;
-      }) !== undefined) {
+          
+          var apiRes = reqData.res;
+          data = reqData.mock ? mock.mock(apiRes) : apiRes;
+          delay = reqData.delay || 0;
+          return true;
+        }) !== undefined) {
       break;
     }
   }
